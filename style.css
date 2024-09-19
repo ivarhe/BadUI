@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    background: linear-gradient(45deg, #753188, #E59934, #9AE66E);
+    background-size: 400% 400%; 
+    animation: gradient-rotation 10s ease infinite; 
+    height: 100vh; 
+    margin: 0;
+}
+
+canvas {
+    border: 2px solid black;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+  
+  @keyframes gradient-rotation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+h2 {
+    font-family: 'Arial';
+}
+
+  #birdButton {
+    position: absolute;
+    padding: 15px 30px;
+    background-color: #753188;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    animation: moveAround 60s ease-in-out infinite; 
+  }
+  
+  @keyframes moveAround {
+    0% {
+      top: 10%;
+      left: 10%;
+      transform: rotate(0deg) scale(1);
+    }
+    25% {
+      top: 70%;
+      left: 20%;
+      transform: rotate(360deg) scale(1.2);
+    }
+    50% {
+      top: 40%;
+      left: 80%;
+      transform: rotate(-720deg) scale(0.8);
+    }
+    75% {
+      top: 80%;
+      left: 90%;
+      transform: rotate(1080deg) scale(1.5);
+    }
+    100% {
+      top: 10%;
+      left: 10%;
+      transform: rotate(1440deg) scale(1);
+    }
+  }
+  
+  

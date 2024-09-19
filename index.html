@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="fun.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="flyForm.js"></script>
+
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <title>Ivar og Henrik og Håkon og Jonathan og Peter sitt dreamteam</title>
+</head>
+<body>
+    <h1 id="rollingText">Velkommen til GratisKondomer</h1>
+    <h2 id="top">Har du lyst på 50 gratis kondomer tilsendt hver uke?</h2>
+    <h1>Hva er navnet ditt da?</h1>
+    <label for="charCount">Antall bokstaver i navnet ditt, takk:</label>
+    <input type="number" id="charCount" name="charCount" min="1" max="26">
+
+    <div id="nameInput">
+        <!-- Select inputs will be generated here -->
+    </div>
+
+    <button id="confirmButton">Confirm Name</button>
+
+    <div id="confirmedName">
+        <!-- The confirmed name will be displayed here -->
+    </div>
+    <h2>Registrer deg med telefonnummer og adresse</h2>
+    <h4>Spis sifferene i telefonnummeret ditt i riktig rekkefølge</h4>
+    <input type="range" id="speedSlider" min="0" max="2" step="1" value="1">
+    <label id="speedSlider" for="speedSlider">Speed: Slow | Fast | Fun mode</label>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <h4>landskode: <span>
+        <select name="plus_minus" id="plus_minus">
+            <option value="-">PLUSS</option>
+            <option value="+">minus</option>
+        </select>
+        <select name="plus_minus" id="plus_minus">
+            <option value="">0</option>
+            <option value="">2</option>
+            <option value="">6</option>
+            <option value="">1</option>
+            <option value="">7</option>
+            <option value="">8</option>
+            <option value="">3</option>
+            <option value="">9</option>
+            <option value="">4</option>
+            <option value="">5</option>
+        </select>
+        <select name="plus_minus" id="plus_minus">
+            <option value="">0</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">6</option>
+            <option value="">1</option>
+            <option value="">8</option>
+            <option value="">5</option>
+            <option value="">9</option>
+            <option value="">7</option>
+            <option value="">4</option>
+        </select>
+    </span></h4>
+    <h2>Telefonnummer: <span id="wordDisplay"></span></h2>
+    <h2>Vil du ikke ha indiskret sending? <span onclick="discretePackage('Ja')">Ja</span> eller <span onclick="discretePackage('Nei')">Nei</span>?</h2>
+    <button id="birdButton">Address
+        <div id="formContainer" class="hidden">
+            <form id="addressForm">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address">
+            </form>
+        </div>
+    <button onclick="displayInfo()">Submit</button>
+    </button>
+
+    <p class="choiceText">Du valgte <span id="choice">ikke</span> til om du ikke vil ha pakkene dine sendt diskret</p>
+    <h2>Proudly WCAG incompatible! </h2>
+</body>
+</html>
+
+<style> 
+    body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    background: linear-gradient(45deg, #753188, #E59934, #9AE66E);
+    background-size: 400% 400%; 
+    animation: gradient-rotation 1s ease infinite; 
+    height: 100vh; 
+    margin: 0;
+}
+    h2 {
+        font-family: "Papyrus";
+        animation: growShrink 50s ease-in-out infinite;
+    }
+
+    canvas {
+        border: 2px solid black;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    
+    @keyframes gradient-rotation {
+        0% {
+        background-position: 0% 50%;
+        }
+        50% {
+        background-position: 100% 50%;
+        }
+        100% {
+        background-position: 0% 50%;
+        }
+    }
+
+    .choiceText {
+        position: absolute;
+        font-size: xx-small;
+        bottom: 1%;
+        right: 3%;
+    }
+
+    #birdButton {
+        position: absolute;
+        padding: 15px 30px;
+        background-color: #753188;
+        color: #E59934;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        animation: moveAround 60s ease-in-out infinite; 
+        transition: transform 0.3s ease, animation-duration 0.3s ease;
+    }
+    
+    #birdButton:hover {
+        transform: scale(2); 
+    }
+    
+    @keyframes moveAround {
+        0% {
+        top: 10%;
+        left: 10%;
+        transform: rotate(0deg) scale(1);
+        }
+        25% {
+        top: 70%;
+        left: 20%;
+        transform: rotate(360deg) scale(1.2);
+        }
+        50% {
+        top: 40%;
+        left: 80%;
+        transform: rotate(-720deg) scale(0.8);
+        }
+        75% {
+        top: 80%;
+        left: 90%;
+        transform: rotate(1080deg) scale(1.5);
+        }
+        100% {
+        top: 10%;
+        left: 10%;
+        transform: rotate(1440deg) scale(1);
+        }
+    }
+    .hidden {
+        display: none;
+    }
+    
+    #rollingText {
+        font-size: 4em;
+        white-space: nowrap; /* Ensure the text stays on one line */
+        position: absolute;
+        transform: translateY(-50%); /* Center vertically */
+        animation: rollHorizontal 10s linear infinite; /* Adjust duration as needed */
+    }
+    #top {
+        padding-top: 2rem;
+    }
+
+    @keyframes rollHorizontal {
+        0% {
+            transform: translateX(100vw); /* Start off the right side of the viewport */
+        }
+        100% {
+            transform: translateX(-100vw); /* End off the left side of the viewport */
+        }
+    }
+
+    #nameInput select {
+        margin: 0; /* No spacing between elements */
+        font-size: 20px; /* Inconsistent font size */
+        background-color: yellow; /* Clashing background color */
+        color: green; /* Clashing text color */
+    }
+    #charCount {
+        width: 50px; /* Unnecessarily small input field */
+        background-color: black; /* Dark background */
+        color: black; /* Text color same as background */
+    }
+    label {
+        font-weight: normal; /* Removes emphasis from labels */
+        font-size: 30px; /* Oversized labels */
+        color: red; /* Aggressive color */
+    }
+    #confirmButton {
+        background-color: #00ffff; /* Neon cyan */
+        color: #ff00ff; /* Clashing color */
+        border: none; /* No border to define the button */
+        padding: 20px 50px; /* Excessive padding */
+        font-size: 5px; /* Tiny text on a big button */
+    }
+    #confirmedName {
+        margin-top: -5px; /* Overlapping elements */
+        font-weight: lighter; /* Makes text less readable */
+        color: white; /* Low contrast with background */
+    }
+
+    @keyframes growShrink {
+    0% {
+        font-size: 1em; /* Original size */
+    }
+    50% {
+        font-size: 1.5em; /* Grow size */
+    }
+    100% {
+        font-size: 1em; /* Back to original size */
+    }
+}
+  
+</style>
